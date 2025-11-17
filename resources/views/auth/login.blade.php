@@ -46,7 +46,7 @@
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                        <button type="submit" class="btn btn-warning w-100 mb-3">Login</button>
                     </form>
 
                     <p class="text-center">
