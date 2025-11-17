@@ -10,6 +10,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        main {
+            flex: 1;
+        }
+        
+        .footer {
+            margin-top: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,9 +47,11 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('products') }}">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('service') }}">Contact</a></li>
+                    @if(!Auth::check() || Auth::user()->role !== 'admin')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('products') }}">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('service') }}">Contact</a></li>
+                    @endif
                 </ul>
 
                 <div class="d-flex align-items-center gap-3">
@@ -132,7 +155,9 @@
     </nav>
 
     <!-- Content -->
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
 
     <!-- Footer -->
     <footer class="footer bg-dark text-white mt-5 py-4">
@@ -176,6 +201,15 @@
         .search-icon-link:hover {
             opacity: 0.8;
             transform: scale(1.1);
+        }
+        
+        /* Hapus underline pada dropdown toggle */
+        .dropdown-toggle {
+            text-decoration: none !important;
+        }
+        
+        .dropdown-toggle:hover {
+            text-decoration: none !important;
         }
 
         .search-icon-link.hidden {
