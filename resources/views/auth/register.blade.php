@@ -54,7 +54,7 @@
                                    name="password_confirmation" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 mb-3">Daftar</button>
+                        <button type="submit" class="btn btn-warning w-100 mb-3">Daftar</button>
                     </form>
 
                     <p class="text-center">
