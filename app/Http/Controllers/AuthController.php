@@ -70,9 +70,8 @@ class AuthController extends Controller
             'role' => 'user',
         ]);
 
-        Auth::login($user);
-
-        return redirect('/')->with('success', 'Registrasi berhasil!');
+        // Redirect ke login page instead of auto-login
+        return redirect()->route('auth.login')->with('success', 'Registrasi berhasil! Silakan login dengan akun Anda.');
     }
 
     /**
