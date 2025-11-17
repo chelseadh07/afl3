@@ -12,11 +12,14 @@
 
                     @if ($product->image)
                         <div class="mb-4">
-                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="img-fluid" style="max-height: 400px; object-fit: cover;">
+                            <img src="{{ asset('assets/images/' . $product->image) }}" 
+                                 alt="{{ $product->name }}" 
+                                 class="img-fluid rounded shadow" 
+                                 style="max-height: 400px; object-fit: cover; width: 100%;">
                         </div>
                     @endif
 
-                    <table class="table">
+                    <table class="table table-bordered">
                         <tr>
                             <th>Kategori</th>
                             <td>{{ $product->category->name ?? '-' }}</td>
@@ -39,7 +42,7 @@
                         </tr>
                     </table>
 
-                    <div class="mt-4">
+                    <div class="mt-4 d-flex gap-2">
                         <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning">Edit</a>
                         <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Kembali</a>
                     </div>

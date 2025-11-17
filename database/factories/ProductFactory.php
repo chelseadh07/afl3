@@ -23,13 +23,22 @@ class ProductFactory extends Factory
             'Adjustable Task Lamp',
         ];
 
+        $images = [
+            'mushroom.png',
+            'tulip.png',
+            'lamp3.png',
+            'lamp4.png',
+            'lamp5.jpg',
+        ];
+
         $name = $this->faker->randomElement($productNames);
+        $image = $this->faker->randomElement($images); // <-- ambil random dari 5 file
 
         return [
             'category_id' => \App\Models\Category::inRandomOrder()->first()?->id ?? 1,
             'name' => $name,
             'slug' => Str::slug($name) . '-' . $this->faker->unique()->numberBetween(1, 999),
-            'image' => 'images/sample-product.jpg',
+            'image' => $image,
             'price' => $this->faker->numberBetween(50000, 250000),
             'short_description' => $this->faker->randomElement([
                 'A stylish and functional lighting piece for any modern space.',

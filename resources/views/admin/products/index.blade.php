@@ -51,7 +51,7 @@
                             <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>
                                 @if ($product->image)
-                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" width="50" height="50" style="object-fit: cover; border-radius: 4px;">
+                                    <img src="{{ asset('assets/images/' . $product->image) }}" alt="{{ $product->name }}" width="50" height="50" style="object-fit: cover; border-radius: 4px;">
                                 @else
                                     <span class="badge bg-secondary">Tidak ada</span>
                                 @endif
