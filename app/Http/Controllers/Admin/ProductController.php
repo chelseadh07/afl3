@@ -10,6 +10,17 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+
+    // Tambahkan array factoryImages di class atau method update/store
+    protected $factoryImages = [
+        'assets/images/mushroom.png',
+        'assets/images/tulip.png',
+        'assets/images/lamp3.png',
+        'assets/images/lamp4.png',
+        'assets/images/lamp5.jpg',
+    ];
+
+
     /**
      * Display a listing of the resource.
      */

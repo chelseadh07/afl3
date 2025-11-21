@@ -7,12 +7,24 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-md-6">
-                <img src="{{ asset('assets/images/' . $product->image) }}" class="img-fluid rounded shadow" alt="{{ $product->name }}" style="max-height: 500px; object-fit: cover;">
+                @php
+                    $defaultFolder = 'assets/images/';
+                    $factoryImages = ['mushroom.png','tulip.png','lamp3.png','lamp4.png','lamp5.jpg'];
+                    $imagePath = $product->image;
+
+                    // fallback ke factory jika file tidak ada
+                    if (!file_exists(public_path($imagePath)) && in_array($imagePath, $factoryImages)) {
+                        $imagePath = $defaultFolder . $imagePath;
+                    }
+                @endphp
+
+                <img src="{{ asset($imagePath) }}" class="img-fluid rounded shadow" alt="{{ $product->name }}" style="max-height: 500px; object-fit: cover;">
             </div>
+
             <div class="col-md-6">
                 <h2 class="mb-2">{{ $product->name }}</h2>
                 <p class="text-warning fw-bold mb-3" style="font-size: 1.5rem;">${{ number_format($product->price, 2) }}</p>
-                <p class="text-muted mb-4">{{ $product->description }}</p>
+                <p class="text-muted mb-4">{{ $product->short_description }}</p>
                 <p class="mb-4">{{ $product->long_description }}</p>
 
                 @auth

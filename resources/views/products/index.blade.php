@@ -31,10 +31,23 @@
         @if($products->count() > 0)
             <div class="row g-4">
                 @foreach($products as $product)
+                @php
+                    // Folder default untuk gambar
+                    $defaultFolder = 'assets/images/';
+                    $factoryImages = ['mushroom.png','tulip.png','lamp3.png','lamp4.png','lamp5.jpg'];
+                    $imagePath = $product->image;
+
+                    // jika image upload admin (full path sudah ada) tetap pakai
+                    // jika factory image (nama saja) → tambahkan folder
+                    if (in_array($imagePath, $factoryImages)) {
+                        $imagePath = $defaultFolder . $imagePath;
+                    }
+                @endphp
+
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card border-0 shadow-sm h-100 transition-transform" style="transition: transform 0.3s ease;">
                         <div style="overflow: hidden; height: 250px;">
-                            <img src="{{ asset('assets/images/' . $product->image) }}" 
+                            <img src="{{ asset($imagePath) }}" 
                                  class="card-img-top w-100" 
                                  alt="{{ $product->name }}"
                                  style="object-fit: cover; height: 100%; transition: transform 0.3s ease;">
@@ -78,6 +91,7 @@
 </section>
 
 <style>
+    /* Card hover effect */
     .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
