@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    /**
-     * Show cart
-     */
+    
     public function index()
     {
         $cart = Auth::user()->cart ?? null;

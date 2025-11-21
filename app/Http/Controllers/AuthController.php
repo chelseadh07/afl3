@@ -10,17 +10,13 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    /**
-     * Show login form
-     */
+    
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle login
-     */
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -44,17 +40,13 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    /**
-     * Show register form
-     */
+    
     public function showRegister()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle register
-     */
+    
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -74,9 +66,7 @@ class AuthController extends Controller
         return redirect()->route('auth.login')->with('success', 'Registrasi berhasil! Silakan login dengan akun Anda.');
     }
 
-    /**
-     * Handle logout
-     */
+    
     public function logout(Request $request)
     {
         Auth::logout();
