@@ -13,10 +13,9 @@ class ProductController extends Controller
         
         $query = Product::query();
 
-        // Filter berdasarkan search - case insensitive
+        // Filter berdasarkan search - hanya product yang nama-nya DIMULAI dengan keyword (case-sensitive)
         if ($search) {
-            $query->where('name', 'LIKE', $search . '%')
-                  ->orWhere('description', 'LIKE', '%' . $search . '%');
+            $query->where('name', 'LIKE', $search . '%');
         }
 
         $products = $query->paginate(12);
